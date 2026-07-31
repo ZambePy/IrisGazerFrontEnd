@@ -1,0 +1,168 @@
+@import "tailwindcss";
+
+@theme {
+  /* Identidade Visual IrisFlow */
+  --color-primary: #1B54A8;
+  --color-primary-dark: #143e80;
+  --color-primary-light: #e8f0fb;
+
+  /* Fonte */
+  --font-family-sans: 'Boldonse', system-ui, sans-serif;
+
+  /* Animações */
+  --animate-fade-in-up: fadeInUp 0.7s ease-out both;
+  --animate-fade-in: fadeIn 1s ease-out both;
+  --animate-float: float 6s ease-in-out infinite;
+
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(28px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-14px); }
+  }
+}
+
+/* Reset e base global */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+@font-face {
+  font-family: 'Boldonse';
+  src: url('/Boldonse.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+html, body, #root {
+  height: 100%;
+  width: 100%;
+  font-family: 'Boldonse', system-ui, sans-serif;
+  background-color: #f1f5f9;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Glassmorphism utilitário */
+.glass {
+  background: rgba(255, 255, 255, 0.60);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.70);
+  box-shadow: 0 8px 32px 0 rgba(27, 84, 168, 0.08);
+}
+
+.glass-dark {
+  background: rgba(27, 84, 168, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+/* Card de ação */
+.action-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  padding: 2.5rem;
+  border-radius: 2rem;
+  cursor: pointer;
+  user-select: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.action-card:hover {
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: 0 20px 48px rgba(27, 84, 168, 0.18);
+}
+.action-card:active {
+  transform: scale(0.97);
+}
+
+/* Ícone do card */
+.card-icon {
+  width: 8rem;
+  height: 8rem;
+  border-radius: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 3px solid rgba(255,255,255,0.9);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.07), inset 0 2px 4px rgba(255,255,255,0.5);
+}
+
+/* Botão arredondado (header) */
+.btn-pill {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 1.1rem;
+  cursor: pointer;
+  border: 2px solid;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+  user-select: none;
+}
+.btn-pill:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+}
+.btn-pill:active {
+  transform: scale(0.97);
+}
+
+/* Teclado Virtual */
+.key-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  border-radius: 1rem;
+  border: 2px solid #e2e8f0;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #1e293b;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.1s, box-shadow 0.15s;
+  box-shadow: 0 3px 0px #cbd5e1;
+  user-select: none;
+}
+.key-btn:hover {
+  background: #f0f7ff;
+  border-color: #1B54A8;
+  box-shadow: 0 3px 0px #1B54A8;
+}
+.key-btn:active {
+  transform: translateY(3px);
+  box-shadow: none;
+}
+
+/* Orb de fundo */
+.bg-orb {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(80px);
+  pointer-events: none;
+  opacity: 0.55;
+}
+
+/* Scrollbar discreta */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 9999px; }
+
+/* Animações utilitárias */
+.animate-fade-in-up { animation: fadeInUp 0.7s ease-out both; }
+.animate-fade-in    { animation: fadeIn 1s ease-out both; }
+.animate-float      { animation: float 6s ease-in-out infinite; }
