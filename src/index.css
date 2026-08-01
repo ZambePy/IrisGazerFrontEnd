@@ -1,8 +1,8 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 @theme {
   /* Identidade Visual IrisFlow */
-  --color-primary: #1B54A8;
+  --color-primary: #1b54a8;
   --color-primary-dark: #143e80;
   --color-primary-light: #e8f0fb;
 
@@ -15,21 +15,38 @@
   --animate-float: float 6s ease-in-out infinite;
 
   @keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(28px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+      opacity: 0;
+      transform: translateY(28px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
   @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
   }
   @keyframes float {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-14px); }
+    0%,
+    100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-14px);
+    }
   }
 }
 
 /* Reset e base global */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -43,7 +60,9 @@
   font-display: swap;
 }
 
-html, body, #root {
+html,
+body,
+#root {
   height: 100%;
   width: 100%;
   font-family: 'Boldonse', system-ui, sans-serif;
@@ -53,10 +72,10 @@ html, body, #root {
 
 /* Glassmorphism utilitário */
 .glass {
-  background: rgba(255, 255, 255, 0.60);
+  background: rgba(255, 255, 255, 0.6);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.70);
+  border: 1px solid rgba(255, 255, 255, 0.7);
   box-shadow: 0 8px 32px 0 rgba(27, 84, 168, 0.08);
 }
 
@@ -78,7 +97,9 @@ html, body, #root {
   border-radius: 2rem;
   cursor: pointer;
   user-select: none;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
 .action-card:hover {
   transform: translateY(-6px) scale(1.03);
@@ -96,8 +117,10 @@ html, body, #root {
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 3px solid rgba(255,255,255,0.9);
-  box-shadow: 0 4px 16px rgba(0,0,0,0.07), inset 0 2px 4px rgba(255,255,255,0.5);
+  border: 3px solid rgba(255, 255, 255, 0.9);
+  box-shadow:
+    0 4px 16px rgba(0, 0, 0, 0.07),
+    inset 0 2px 4px rgba(255, 255, 255, 0.5);
 }
 
 /* Botão arredondado (header) */
@@ -111,12 +134,15 @@ html, body, #root {
   font-size: 1.1rem;
   cursor: pointer;
   border: 2px solid;
-  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease,
+    background 0.15s ease;
   user-select: none;
 }
 .btn-pill:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
 }
 .btn-pill:active {
   transform: scale(0.97);
@@ -134,14 +160,17 @@ html, body, #root {
   font-weight: 700;
   color: #1e293b;
   cursor: pointer;
-  transition: background 0.15s, transform 0.1s, box-shadow 0.15s;
+  transition:
+    background 0.15s,
+    transform 0.1s,
+    box-shadow 0.15s;
   box-shadow: 0 3px 0px #cbd5e1;
   user-select: none;
 }
 .key-btn:hover {
   background: #f0f7ff;
-  border-color: #1B54A8;
-  box-shadow: 0 3px 0px #1B54A8;
+  border-color: #1b54a8;
+  box-shadow: 0 3px 0px #1b54a8;
 }
 .key-btn:active {
   transform: translateY(3px);
@@ -158,11 +187,136 @@ html, body, #root {
 }
 
 /* Scrollbar discreta */
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 9999px; }
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 9999px;
+}
 
 /* Animações utilitárias */
-.animate-fade-in-up { animation: fadeInUp 0.7s ease-out both; }
-.animate-fade-in    { animation: fadeIn 1s ease-out both; }
-.animate-float      { animation: float 6s ease-in-out infinite; }
+.animate-fade-in-up {
+  animation: fadeInUp 0.7s ease-out both;
+}
+.animate-fade-in {
+  animation: fadeIn 1s ease-out both;
+}
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Acessibilidade — foco visível em todos os interativos */
+:focus {
+  outline: none;
+}
+:focus-visible {
+  outline: 3px solid #1b54a8;
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+[role='button']:focus-visible,
+[role='radio']:focus-visible,
+[role='switch']:focus-visible,
+[role='tab']:focus-visible {
+  outline: 3px solid #1b54a8;
+  outline-offset: 3px;
+  box-shadow: 0 0 0 6px rgba(27, 84, 168, 0.15);
+}
+
+/* Screen-reader only */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Skip link para leitores de tela */
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 0;
+  background: #1b54a8;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  z-index: 9999;
+  text-decoration: none;
+  font-weight: 700;
+  border-radius: 0 0 0.75rem 0;
+}
+.skip-link:focus {
+  top: 0;
+}
+
+/* Contraste — texto sobre glassmorphism precisa de contraste mínimo AA */
+.glass-text {
+  color: #0f172a;
+}
+.glass-dark {
+  color: #ffffff;
+}
+
+/* Reduzir movimento para usuários que preferem menos animação */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .animate-float {
+    animation: none !important;
+  }
+}
+
+/* Zoom em item de galeria via CSS puro (evita mouse handlers em elementos não interativos) */
+.gallery-item:hover,
+.gallery-item:focus-within {
+  transform: scale(1.05);
+}
+
+/* Dwell progress — feedback visual para seleção por olhar */
+.dwell-wrapper {
+  position: relative;
+  overflow: hidden;
+}
+.dwell-progress {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    rgba(27, 84, 168, 0.22) var(--dwell-pct, 0%),
+    transparent var(--dwell-pct, 0%)
+  );
+  pointer-events: none;
+  border-radius: inherit;
+}
+.dwell-ring {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: conic-gradient(
+    #1b54a8 calc(var(--dwell-pct, 0%) * 3.6deg),
+    rgba(27, 84, 168, 0.15) 0
+  );
+  transition: background 0.05s linear;
+  pointer-events: none;
+}

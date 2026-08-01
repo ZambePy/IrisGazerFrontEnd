@@ -9,7 +9,14 @@ interface CardProps {
   disabled?: boolean;
 }
 
-export const Card: React.FC<CardProps> = ({ icon, label, sublabel, color = '#1B54A8', onClick, disabled }) => (
+export const Card: React.FC<CardProps> = ({
+  icon,
+  label,
+  sublabel,
+  color = '#1B54A8',
+  onClick,
+  disabled,
+}) => (
   <button
     onClick={onClick}
     disabled={disabled}
@@ -28,18 +35,39 @@ export const Card: React.FC<CardProps> = ({ icon, label, sublabel, color = '#1B5
       transition: 'transform 0.2s, box-shadow 0.2s',
     }}
   >
-    <div style={{
-      width: 64, height: 64, borderRadius: '1rem',
-      background: `linear-gradient(135deg, ${color}25, ${color}10)`,
-      display: 'flex', alignItems: 'center', justifyContent: 'center',
-    }}>
+    <div
+      style={{
+        width: 64,
+        height: 64,
+        borderRadius: '1rem',
+        background: `linear-gradient(135deg, ${color}25, ${color}10)`,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}
+    >
       {icon}
     </div>
-    <span style={{ fontSize: '1.1rem', fontWeight: 700, color: '#1e293b', textAlign: 'center', lineHeight: 1.3 }}>
+    <span
+      style={{
+        fontSize: '1.1rem',
+        fontWeight: 700,
+        color: '#1e293b',
+        textAlign: 'center',
+        lineHeight: 1.3,
+      }}
+    >
       {label}
     </span>
     {sublabel && (
-      <span style={{ fontSize: '0.8rem', color: '#64748b', fontFamily: 'system-ui, sans-serif', textAlign: 'center' }}>
+      <span
+        style={{
+          fontSize: '0.8rem',
+          color: '#64748b',
+          fontFamily: 'system-ui, sans-serif',
+          textAlign: 'center',
+        }}
+      >
         {sublabel}
       </span>
     )}

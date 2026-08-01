@@ -21,10 +21,17 @@ export const TTSButton: React.FC<TTSButtonProps> = ({ text, voiceProfileId: _voi
     <button
       onClick={speak}
       style={{
-        display: 'flex', alignItems: 'center', gap: '0.5rem',
-        padding: '0 2rem', background: 'linear-gradient(135deg, #1B54A8, #2563eb)',
-        borderRadius: '1.25rem', color: 'white', fontSize: '1.1rem',
-        fontWeight: 700, border: 'none', cursor: 'pointer',
+        display: 'flex',
+        alignItems: 'center',
+        gap: '0.5rem',
+        padding: '0 2rem',
+        background: 'linear-gradient(135deg, #1B54A8, #2563eb)',
+        borderRadius: '1.25rem',
+        color: 'white',
+        fontSize: '1.1rem',
+        fontWeight: 700,
+        border: 'none',
+        cursor: 'pointer',
         boxShadow: '0 4px 20px rgba(27,84,168,0.4)',
       }}
     >

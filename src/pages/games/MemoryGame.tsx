@@ -4,8 +4,15 @@ import { Gamepad2 } from 'lucide-react';
 
 const EMOJIS = ['🐶', '🐱', '🐭', '🐹', '🐰', '🦊', '🐻', '🐼'];
 
+interface Card {
+  id: number;
+  emoji: string;
+  isFlipped: boolean;
+  isMatched: boolean;
+}
+
 export const MemoryGame: React.FC = () => {
-  const [cards, setCards] = useState<{ id: number, emoji: string, isFlipped: boolean, isMatched: boolean }[]>([]);
+  const [cards, setCards] = useState<Card[]>([]);
   const [flippedCards, setFlippedCards] = useState<number[]>([]);
   const [moves, setMoves] = useState(0);
 
@@ -14,24 +21,24 @@ export const MemoryGame: React.FC = () => {
   }, []);
 
   const initializeGame = () => {
-    const shuffledCards = [...EMOJIS, ...EMOJIS]
+    const shuffled: Card[] = [...EMOJIS, ...EMOJIS]
       .sort(() => Math.random() - 0.5)
       .map((emoji, index) => ({ id: index, emoji, isFlipped: false, isMatched: false }));
-    setCards(shuffledCards);
+    setCards(shuffled);
     setFlippedCards([]);
     setMoves(0);
   };
 
   const handleCardClick = (index: number) => {
     if (cards[index].isFlipped || cards[index].isMatched || flippedCards.length === 2) return;
-    
+
     const newCards = [...cards];
     newCards[index].isFlipped = true;
     setCards(newCards);
     setFlippedCards([...flippedCards, index]);
 
     if (flippedCards.length === 1) {
-      setMoves(m => m + 1);
+      setMoves((m) => m + 1);
       const firstIndex = flippedCards[0];
       if (newCards[firstIndex].emoji === newCards[index].emoji) {
         newCards[firstIndex].isMatched = true;
@@ -50,39 +57,79 @@ export const MemoryGame: React.FC = () => {
     }
   };
 
-  const allMatched = cards.length > 0 && cards.every(c => c.isMatched);
+  const allMatched = cards.length > 0 && cards.every((c) => c.isMatched);
 
   return (
-    <div style={{
-      minHeight: '100vh',
-      background: 'linear-gradient(160deg, #dcfce7 0%, #bbf7d0 100%)',
-      padding: '2rem',
-      display: 'flex',
-      flexDirection: 'column'
-    }}>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
+    <main
+      role="main"
+      aria-labelledby="memory-title"
+      style={{
+        minHeight: '100vh',
+        background: 'linear-gradient(160deg, #dcfce7 0%, #bbf7d0 100%)',
+        padding: '2rem',
+        display: 'flex',
+        flexDirection: 'column',
+      }}
+    >
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          marginBottom: '2rem',
+        }}
+      >
         <BackButton />
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', background: 'white', padding: '0.5rem 1rem', borderRadius: '1rem', color: '#166534', fontWeight: 'bold' }}>
-          <Gamepad2 /> Jogo da Memória - Movimentos: {moves}
+        <div
+          role="status"
+          aria-live="polite"
+          aria-label={`Movimentos realizados: ${moves}`}
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '0.5rem',
+            background: 'white',
+            padding: '0.5rem 1rem',
+            borderRadius: '1rem',
+            color: '#166534',
+            fontWeight: 700,
+          }}
+        >
+          <Gamepad2 aria-hidden="true" />
+          <h1 id="memory-title" style={{ fontSize: '1rem', margin: 0, fontWeight: 700 }}>
+            Jogo da Memória — Movimentos: {moves}
+          </h1>
         </div>
       </div>
 
-      <div style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(4, 1fr)',
-        gap: '1rem',
-        maxWidth: 600,
-        margin: '0 auto',
-        width: '100%',
-        flex: 1
-      }}>
+      <div
+        role="grid"
+        aria-label="Cartas do jogo da memória"
+        style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(4, 1fr)',
+          gap: '1rem',
+          maxWidth: 600,
+          margin: '0 auto',
+          width: '100%',
+          flex: 1,
+        }}
+      >
         {cards.map((card, index) => (
           <button
             key={card.id}
+            type="button"
+            role="gridcell"
+            aria-label={
+              card.isFlipped || card.isMatched ? `Carta virada: ${card.emoji}` : 'Carta escondida'
+            }
             onClick={() => handleCardClick(index)}
             style={{
               aspectRatio: '1',
-              background: card.isFlipped || card.isMatched ? 'white' : 'linear-gradient(135deg, #22c55e, #16a34a)',
+              background:
+                card.isFlipped || card.isMatched
+                  ? 'white'
+                  : 'linear-gradient(135deg, #22c55e, #16a34a)',
               borderRadius: '1rem',
               display: 'flex',
               alignItems: 'center',
@@ -91,22 +138,39 @@ export const MemoryGame: React.FC = () => {
               border: 'none',
               cursor: card.isFlipped || card.isMatched ? 'default' : 'pointer',
               boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
-              transition: 'transform 0.3s'
+              transition: 'transform 0.3s',
             }}
           >
-            {(card.isFlipped || card.isMatched) ? card.emoji : '?'}
+            <span aria-hidden={!(card.isFlipped || card.isMatched)}>
+              {card.isFlipped || card.isMatched ? card.emoji : '?'}
+            </span>
           </button>
         ))}
       </div>
-      
+
       {allMatched && (
-        <div style={{ textAlign: 'center', marginTop: '2rem' }}>
+        <div role="alert" aria-live="assertive" style={{ textAlign: 'center', marginTop: '2rem' }}>
           <h2 style={{ color: '#166534' }}>Parabéns! Você encontrou todos os pares!</h2>
-          <button onClick={initializeGame} style={{
-            padding: '1rem 2rem', background: '#22c55e', color: 'white', borderRadius: '1rem', border: 'none', fontSize: '1.2rem', fontWeight: 'bold', cursor: 'pointer', marginTop: '1rem'
-          }}>Jogar Novamente</button>
+          <button
+            type="button"
+            onClick={initializeGame}
+            aria-label="Iniciar novo jogo da memória"
+            style={{
+              padding: '1rem 2rem',
+              background: '#22c55e',
+              color: 'white',
+              borderRadius: '1rem',
+              border: 'none',
+              fontSize: '1.2rem',
+              fontWeight: 700,
+              cursor: 'pointer',
+              marginTop: '1rem',
+            }}
+          >
+            Jogar Novamente
+          </button>
         </div>
       )}
-    </div>
+    </main>
   );
 };

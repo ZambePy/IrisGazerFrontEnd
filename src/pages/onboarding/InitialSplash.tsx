@@ -8,61 +8,86 @@ export const InitialSplash: React.FC = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       navigate('/login');
-    }, 4000); // 4 seconds before redirect
+    }, 4000);
     return () => clearTimeout(timer);
   }, [navigate]);
 
   return (
-    <div style={{
-      minHeight: '100vh',
-      backgroundColor: '#ffffff',
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      justifyContent: 'center',
-      animation: 'fadeIn 1s ease-in',
-    }}>
-      {/* Container da logo animado */}
-      <div style={{
-        animation: 'pulse 2s infinite',
-        marginBottom: '2rem'
-      }}>
+    <main
+      role="main"
+      aria-labelledby="splash-title"
+      style={{
+        minHeight: '100vh',
+        backgroundColor: '#ffffff',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        animation: 'fadeIn 1s ease-in',
+      }}
+    >
+      <div style={{ animation: 'pulse 2s infinite', marginBottom: '2rem' }} aria-hidden="true">
         {!imageError && (
-          <img 
-            src="/LOGO.png" 
-            alt="IrisFlow Logo" 
-            style={{ width: '300px', height: 'auto', filter: 'drop-shadow(0 10px 20px rgba(27,84,168,0.2))' }}
-            onError={(e) => {
-              e.currentTarget.style.display = 'none';
-              setImageError(true);
+          <img
+            src="/LOGO.png"
+            alt=""
+            style={{
+              width: '300px',
+              height: 'auto',
+              filter: 'drop-shadow(0 10px 20px rgba(27,84,168,0.2))',
             }}
+            onError={() => setImageError(true)}
           />
         )}
         {imageError && (
-          <h1 style={{ fontSize: '4rem', color: '#1B54A8', margin: 0, fontWeight: 900, textAlign: 'center' }}>
+          <span
+            style={{
+              fontSize: '4rem',
+              color: '#1B54A8',
+              margin: 0,
+              fontWeight: 900,
+              textAlign: 'center',
+              display: 'block',
+            }}
+          >
             IrisFlow
-          </h1>
+          </span>
         )}
       </div>
 
-      {/* Texto de boas vindas com delay na animação */}
-      <h2 style={{
-        fontSize: '2rem',
-        color: '#334155',
-        fontWeight: 600,
-        textAlign: 'center',
-        animation: 'slideUp 1.5s ease-out',
-        maxWidth: '80%'
-      }}>
-        Bem-vindo à nossa plataforma
-      </h2>
+      <h1
+        id="splash-title"
+        style={{
+          fontSize: '2rem',
+          color: '#334155',
+          fontWeight: 600,
+          textAlign: 'center',
+          animation: 'slideUp 1.5s ease-out',
+          maxWidth: '80%',
+          margin: 0,
+        }}
+      >
+        Bem-vindo à plataforma IrisFlow
+      </h1>
+      <p role="status" aria-live="polite" className="sr-only">
+        Carregando aplicação. Você será redirecionado em instantes.
+      </p>
 
-      {/* CSS para animações inline (se não estiverem no index.css) */}
+      <button
+        type="button"
+        onClick={() => navigate('/login')}
+        aria-label="Pular splash e ir para o login"
+        className="skip-link"
+        style={{ bottom: 'auto' }}
+      >
+        Pular
+      </button>
+
       <style>{`
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
       `}</style>
-    </div>
+    </main>
   );
 };
