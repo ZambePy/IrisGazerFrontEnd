@@ -3,11 +3,14 @@ import { useNavigate } from 'react-router-dom';
 import { ArrowLeft, MessageSquare, AlertCircle, Tv, Wind, Activity } from 'lucide-react';
 
 const PHRASES = [
-  { id: 1, text: 'Preciso ir ao banheiro', Icon: MessageSquare, iconColor: '#0d9488', bg: 'linear-gradient(135deg, #ccfbf1, #f0fdfa)' },
-  { id: 2, text: 'Quero ligar a TV',        Icon: Tv,            iconColor: '#4f46e5', bg: 'linear-gradient(135deg, #e0e7ff, #eef2ff)' },
-  { id: 3, text: 'Estou com dor',           Icon: Activity,      iconColor: '#e11d48', bg: 'linear-gradient(135deg, #ffe4e6, #fff1f2)' },
-  { id: 4, text: 'Quero passear',           Icon: Wind,          iconColor: '#0284c7', bg: 'linear-gradient(135deg, #bae6fd, #f0f9ff)' },
-  { id: 5, text: 'Preciso de ajuda',        Icon: AlertCircle,   iconColor: '#dc2626', bg: 'linear-gradient(135deg, #fee2e2, #fff1f2)' },
+  { id: 1, text: 'Gostaria de conversar',        Icon: MessageSquare, iconColor: '#0d9488', bg: 'linear-gradient(135deg, #ccfbf1, #f0fdfa)' },
+  { id: 2, text: 'Pode abrir a janela?',          Icon: Wind,          iconColor: '#0284c7', bg: 'linear-gradient(135deg, #bae6fd, #f0f9ff)' },
+  { id: 3, text: 'Quero descansar agora',         Icon: Activity,      iconColor: '#7c3aed', bg: 'linear-gradient(135deg, #ede9fe, #f5f3ff)' },
+  { id: 4, text: 'Pode mudar de posição?',        Icon: AlertCircle,   iconColor: '#d97706', bg: 'linear-gradient(135deg, #fef3c7, #fffbeb)' },
+  { id: 5, text: 'Pode ligar a televisão?',       Icon: Tv,            iconColor: '#4f46e5', bg: 'linear-gradient(135deg, #e0e7ff, #eef2ff)' },
+  { id: 6, text: 'Preciso de um cobertor',        Icon: Wind,          iconColor: '#0891b2', bg: 'linear-gradient(135deg, #cffafe, #ecfeff)' },
+  { id: 7, text: 'Quero ouvir música',            Icon: MessageSquare, iconColor: '#db2777', bg: 'linear-gradient(135deg, #fce7f3, #fdf2f8)' },
+  { id: 8, text: 'Preciso que alguém fique aqui', Icon: AlertCircle,   iconColor: '#16a34a', bg: 'linear-gradient(135deg, #dcfce7, #f0fdf4)' },
 ];
 
 export const QuickPhrasesScreen: React.FC = () => {
@@ -67,7 +70,7 @@ export const QuickPhrasesScreen: React.FC = () => {
         gridTemplateColumns: 'repeat(3, 1fr)',
         gap: '1.5rem',
         flex: 1,
-        maxWidth: '1100px',
+        maxWidth: '1200px',
         margin: '0 auto',
         width: '100%',
         zIndex: 10,

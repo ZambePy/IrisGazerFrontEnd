@@ -66,13 +66,39 @@ export const GamesMenu: React.FC = () => {
           <span style={{ fontSize: '0.8rem', color: 'rgba(255,255,255,0.7)', fontFamily: 'system-ui, sans-serif', textAlign: 'center' }}>Treino de fixação ocular</span>
         </button>
 
-        {/* Em breve 1 */}
-        <div className="action-card glass" style={{ border: '2px dashed rgba(148,163,184,0.5)', opacity: 0.6, cursor: 'not-allowed' }}>
-          <div className="card-icon" style={{ background: 'linear-gradient(135deg, #f1f5f9, #e2e8f0)', boxShadow: 'none' }}>
-            <span style={{ fontSize: '2rem' }}>🎮</span>
+        {/* Jogo da Memória */}
+        <button
+          onClick={() => navigate('/games/memory')}
+          className="action-card"
+          style={{
+            background: 'linear-gradient(135deg, rgba(34,197,94,0.85), rgba(21,128,61,0.85))',
+            backdropFilter: 'blur(16px)',
+            border: '2px solid rgba(134,239,172,0.4)',
+          }}
+        >
+          <div className="card-icon" style={{ background: 'rgba(255,255,255,0.2)', boxShadow: '0 8px 24px rgba(34,197,94,0.4)', border: '3px solid rgba(255,255,255,0.3)' }}>
+            <span style={{ fontSize: '2rem' }}>🧠</span>
           </div>
-          <span style={{ fontSize: '1.1rem', fontWeight: 700, color: '#94a3b8', textAlign: 'center' }}>Em breve...</span>
-        </div>
+          <span style={{ fontSize: '1.25rem', fontWeight: 700, color: 'white', textAlign: 'center' }}>Jogo da<br/>Memória</span>
+          <span style={{ fontSize: '0.8rem', color: 'rgba(255,255,255,0.9)', fontFamily: 'system-ui, sans-serif', textAlign: 'center' }}>Treino cognitivo</span>
+        </button>
+
+        {/* Siga o Alvo */}
+        <button
+          onClick={() => navigate('/games/follow')}
+          className="action-card"
+          style={{
+            background: 'linear-gradient(135deg, rgba(239,68,68,0.85), rgba(185,28,28,0.85))',
+            backdropFilter: 'blur(16px)',
+            border: '2px solid rgba(252,165,165,0.4)',
+          }}
+        >
+          <div className="card-icon" style={{ background: 'rgba(255,255,255,0.2)', boxShadow: '0 8px 24px rgba(239,68,68,0.4)', border: '3px solid rgba(255,255,255,0.3)' }}>
+            <Target size={56} color="white" />
+          </div>
+          <span style={{ fontSize: '1.25rem', fontWeight: 700, color: 'white', textAlign: 'center' }}>Siga o<br/>Alvo</span>
+          <span style={{ fontSize: '0.8rem', color: 'rgba(255,255,255,0.9)', fontFamily: 'system-ui, sans-serif', textAlign: 'center' }}>Velocidade do olhar</span>
+        </button>
       </div>
     </div>
   );
